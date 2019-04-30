@@ -6,10 +6,12 @@ Ne10 is a library of common, useful functions that have been heavily optimised f
   Ne10是一个单独的开源库，可以把它直接嵌入到工程里面去（目前支持linux，android，ios），直接调用里面的函数。Ne10已实现一些接口，可分为4个模块：dsp、math、imgproc、physics。比如dsp中目前就已封装了fft，fir，irr算法函数接口，用户直接调用这些接口函数就可以实现相应算法。Ne10中的所有接口函数既有基于neon实现又有基于c语言实现，这样保证了Ne10库的可移植性。当平台支持neon时，则调用neon函数，否则调用c函数。
 
 
-
-
 ## Building 编译 [![CircleCI](https://circleci.com/gh/projectNe10/Ne10.svg?style=svg)](https://circleci.com/gh/projectNe10/Ne10)
 Out of the box, Ne10 supports the Linux, Android, and iOS platforms. For instructions on building Ne10 for these platforms, please consult the build instructions in 编译指导 [`building.md`](https://github.com/projectNe10/Ne10/tree/master/doc/building.md#building-ne10). It is possible to use the library on other platforms (or, indeed, “without a platform”), however you may have to fiddle with some of the build configuration files.
+
+## 使用
+
+在自己的项目中使用Ne10时，要在代码中include “NE10.h”。并把Ne10的inc目录中的几个.h文件添加到自己项目的头文件目录中(以保证软件编译通过)。使用动态库调用方式时，要先将libNE10.so.10软链接为libNE10.so，然后向makefile添加动态库的-L链接命令（以保证软件链接通过）。同时在嵌入式机器的文件系统的/usr/lib目录中加入动态库libNE10.so.10（以保证项目软件运行时能找到动态库）。在调用Ne10的接口函数之前一定要先调用ne10_init()来初始化Ne10的接口函数，在这里Ne10就会查询当前平台是否支持neon，从而选择初始化neon函数还是c函数。
 
 Once Ne10 has been built, it can be linked against just like any other C library. To link C code against Ne10, for instance, the compiler must first be aware of Ne10's library and header files — those within `build/modules/` and `inc/`. To do this, these files can be copied to the standard directories used by compilation tools by running `make install`, or by installing Ne10 from a package manager. Following this, you can simply include `Ne10.h` in your C code, and ask the compiler to link against the `NE10` library (e.g. with `-lNE10`).
 

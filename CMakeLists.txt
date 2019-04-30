@@ -28,6 +28,9 @@ cmake_minimum_required(VERSION 2.6)
 
 project(NE10 C CXX ASM)
 
+# ================================================================
+# 在CmakeLists.txt文件中的一些option()代码中，可以控制一些宏的开关
+
 option(NE10_BUILD_SHARED "Build NE10 shared libraries" OFF)
 option(NE10_BUILD_STATIC "Build NE10 static libraries" ON)
 option(NE10_BUILD_EXAMPLES "Build NE10 examples" ON)
@@ -47,6 +50,8 @@ if (NE10_BUILD_UNIT_TEST)
 
     option(NE10_DEBUG_TRACE "Print debug trace" OFF)
 endif()
+
+# =================================================
 
 #check if proper platform is set.
 if((NOT ANDROID_PLATFORM) AND (NOT GNULINUX_PLATFORM) AND (NOT IOS_PLATFORM))

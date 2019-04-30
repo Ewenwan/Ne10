@@ -3,7 +3,16 @@
 ## What’s Ne10?
 Ne10 is a library of common, useful functions that have been heavily optimised for ARM-based CPUs equipped with [NEON](https://www.arm.com/products/processors/technologies/neon.php) SIMD capabilities. It provides consistent, well-tested behaviour, allowing for painless integration into a wide variety of applications. The library currently focuses primarily around math, signal processing, image processing, and physics functions.
 
-  Ne10是一个单独的开源库，可以把它直接嵌入到工程里面去（目前支持linux，android，ios），直接调用里面的函数。Ne10已实现一些接口，可分为4个模块：dsp、math、imgproc、physics。比如dsp中目前就已封装了fft，fir，irr算法函数接口，用户直接调用这些接口函数就可以实现相应算法。Ne10中的所有接口函数既有基于neon实现又有基于c语言实现，这样保证了Ne10库的可移植性。当平台支持neon时，则调用neon函数，否则调用c函数。
+Ne10是一个单独的开源库，可以把它直接嵌入到工程里面去（目前支持linux，android，ios），直接调用里面的函数。Ne10已实现一些接口，可分为4个模块：dsp、math、imgproc、physics。比如dsp中目前就已封装了fft，fir，irr算法函数接口，用户直接调用这些接口函数就可以实现相应算法。Ne10中的所有接口函数既有基于neon实现又有基于c语言实现，这样保证了Ne10库的可移植性。当平台支持neon时，则调用neon函数，否则调用c函数。
+
+Ne10 是由ARM主导开发的一个开源软件库。该库旨在提供一系列通用的，基于ARM NEON架构并且经过深度优化的函数集合。通过调用该库函数可以让软件开发人员免于编写重复的底层汇编代码，同时也能充分利用ARM NEON SIMD指令的并行运算能力。Ne10主要包含math, dsp以及新添的imgproc三个功能模块：
+
+* l. math 数学模块：主要包含矢量/矩阵数学运算。
+* 2. dsp 数字信号处理模块：主要包含FFT快速傅立叶变换，以及部分FIR/IIR滤波函数。
+* 3. imgproc 图像处理模块：主要包含图像缩放，旋转等图像后处理函数。
+
+Ne10主要侧重于矩阵和向量的数学运算；而math-neon主要侧重于三角函数、对数、指数等复杂运算。
+
 
 
 ## Building 编译 [![CircleCI](https://circleci.com/gh/projectNe10/Ne10.svg?style=svg)](https://circleci.com/gh/projectNe10/Ne10)
